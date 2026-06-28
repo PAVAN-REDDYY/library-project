@@ -1,0 +1,6 @@
+Django>=4.2,<5.3
+djangorestframework>=3.14
+mysqlclient>=2.1
+# If mysqlclient fails to install, use PyMySQL instead (already wired up in
+# core/__init__.py). Just install it with:  pip install pymysql
+PyMySQL>=1.1

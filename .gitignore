@@ -1,0 +1,275 @@
+.claude/
+# ========================
+# Python
+# ========================
+# Virtual environment — never commit dependencies
+venv/
+.venv/
+env/
+
+# Python compiled files — auto-generated, not your code
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Distribution/packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ========================
+# Environment & Secrets
+# ========================
+# THE MOST IMPORTANT ONES
+.env
+.env.*
+*.pem
+*.key
+secrets/
+credentials/
+
+# ========================
+# Cloud & DevOps Tools
+# ========================
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+crash.log
+
+# Ansible
+*.retry
+
+# AWS
+.aws/credentials
+
+# ========================
+# Logs & Databases
+# ========================
+*.log
+*.sqlite
+*.db
+logs/
+
+# ========================
+# Editor & OS noise
+# ========================
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+# ==============================================================
+# PYTHON
+# ==============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==============================================================
+# VIRTUAL ENVIRONMENT
+# ==============================================================
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.virtualenv/
+
+# ==============================================================
+# DJANGO
+# ==============================================================
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+local_settings.py
+staticfiles/
+collected_static/
+media/
+*.log
+celerybeat-schedule
+celerybeat.pid
+
+# ==============================================================
+# ENVIRONMENT & SECRETS — NEVER COMMIT THESE
+# ==============================================================
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+*.pem
+*.key
+*.cert
+*.p12
+secrets/
+credentials/
+config/secrets.yml
+
+# ==============================================================
+# TESTING & COVERAGE
+# ==============================================================
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+test-results/
+
+# ==============================================================
+# DISTRIBUTION & PACKAGING
+# ==============================================================
+dist/
+build/
+*.egg-info/
+*.egg
+MANIFEST
+.eggs/
+wheels/
+share/python-wheels/
+
+# ==============================================================
+# DEVOPS — TERRAFORM
+# ==============================================================
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfvars
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ==============================================================
+# DEVOPS — ANSIBLE
+# ==============================================================
+*.retry
+.vault_pass
+vault_password_file
+
+# ==============================================================
+# DEVOPS — DOCKER
+# ==============================================================
+.dockerignore
+docker-compose.override.yml
+
+# ==============================================================
+# CLOUD — AWS
+# ==============================================================
+.aws/credentials
+.aws/config
+*.aws
+
+# ==============================================================
+# CLOUD — AZURE
+# ==============================================================
+.azure/
+*.azureauth
+azure.json
+
+# ==============================================================
+# CLOUD — GCP
+# ==============================================================
+.gcp/
+*.json.secret
+service-account*.json
+gcloud-service-key.json
+
+# ==============================================================
+# KUBERNETES
+# ==============================================================
+kubeconfig
+*.kubeconfig
+.kube/
+
+# ==============================================================
+# LOGS & DATABASES
+# ==============================================================
+*.log
+*.sql
+*.sqlite
+logs/
+log/
+
+# ==============================================================
+# EDITOR — VS CODE
+# ==============================================================
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# ==============================================================
+# EDITOR — JETBRAINS (PyCharm etc)
+# ==============================================================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ==============================================================
+# EDITOR — VIM
+# ==============================================================
+*.swp
+*.swo
+*~
+Session.vim
+.netrwhist
+
+# ==============================================================
+# EDITOR — EMACS
+# ==============================================================
+*#
+.#*
+.\#*
+
+# ==============================================================
+# OS — LINUX
+# ==============================================================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==============================================================
+# OS — MACOS
+# ==============================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ==============================================================
+# OS — WINDOWS
+# ==============================================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Books | City Library{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Book Catalogue</h1>
+    <span class="muted">{{ books|length }} book{{ books|length|pluralize }}</span>
+</div>
+
+<form method="get" class="search-bar">
+    <input
+        type="search"
+        name="q"
+        value="{{ query }}"
+        placeholder="Search by title or author&hellip;"
+        class="form-control search-input"
+    >
+    <select name="genre" class="form-control genre-select">
+        <option value="">All Genres</option>
+        {% for g in genres %}
+            <option value="{{ g }}" {% if g == genre %}selected{% endif %}>{{ g }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Search</button>
+    {% if query or genre %}
+        <a href="{% url 'books:list' %}" class="btn btn-secondary">Clear</a>
+    {% endif %}
+</form>
+
+{% if books %}
+<div class="book-grid">
+    {% for book in books %}
+    <a href="{% url 'books:detail' book.pk %}" class="book-card">
+        <div class="book-cover">
+            <span class="book-cover-title">{{ book.title }}</span>
+        </div>
+        <div class="book-info">
+            <h3 class="book-title">{{ book.title }}</h3>
+            <p class="book-author">{{ book.author }}</p>
+            {% if book.genre %}
+                <span class="book-genre">{{ book.genre }}</span>
+            {% endif %}
+            <div class="book-availability">
+                {% if book.is_available %}
+                    <span class="badge badge--active">{{ book.available_copies }} available</span>
+                {% else %}
+                    <span class="badge badge--overdue">Out of stock</span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No books found{% if query %} matching "{{ query }}"{% endif %}.</p>
+    {% if query or genre %}
+        <a href="{% url 'books:list' %}" class="btn btn-secondary">Clear filters</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
