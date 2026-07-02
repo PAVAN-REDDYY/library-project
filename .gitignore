@@ -112,6 +112,9 @@ celerybeat.pid
 .env.production
 .env.staging
 .env.test
+# Safe to commit: a template with placeholder/blank values, no real secrets.
+# Must come after the .env.* exclusion above, or it'd be ignored along with it.
+!.env.example
 *.pem
 *.key
 *.cert
@@ -273,3 +276,11 @@ Desktop.ini
 $RECYCLE.BIN/
 *.lnk
 
+
+# Local filesystem-transport Celery broker directory (dev/testing only)
+.dev_broker/
+# Runtime queue-routing metadata each service's Celery worker creates on
+# startup when using the filesystem transport - just routing plumbing, no
+# secrets, but it's generated state, not source.
+control/
+*/control/

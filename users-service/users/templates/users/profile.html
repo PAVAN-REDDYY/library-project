@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile | City Library{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>My Profile</h1>
+</div>
+
+<div class="profile-grid">
+    <div class="profile-info card">
+        <h2>{{ user.get_full_name|default:user.username }}</h2>
+        <div class="detail-row">
+            <span>Username</span>
+            <strong>{{ user.username }}</strong>
+        </div>
+        <div class="detail-row">
+            <span>Email</span>
+            <strong>{{ user.email }}</strong>
+        </div>
+        <div class="detail-row">
+            <span>Phone</span>
+            <strong>{{ profile.phone|default:"—" }}</strong>
+        </div>
+        <div class="detail-row">
+            <span>Member Since</span>
+            <strong>{{ user.date_joined|date:"N j, Y" }}</strong>
+        </div>
+        <div class="detail-row">
+            <span>Account Status</span>
+            <strong>
+                {% if profile.is_suspended %}
+                    <span class="badge badge--overdue">Suspended</span>
+                {% else %}
+                    <span class="badge badge--active">Active</span>
+                {% endif %}
+            </strong>
+        </div>
+    </div>
+
+    {% if profile.is_suspended %}
+    <div class="alert alert-suspended">
+        <strong>Account Suspended</strong><br>
+        {{ profile.suspension_reason }}
+        <br><br>
+        To restore your account, return any overdue books or request a 7-day extension from the
+        My Borrows page.
+    </div>
+    {% endif %}
+</div>
+
+<section class="section">
+    <a href="{{ RENTALS_URL }}/my-borrows/" class="btn btn-primary">View My Borrows</a>
+</section>
+{% endblock %}

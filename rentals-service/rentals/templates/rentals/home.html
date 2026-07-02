@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | City Library{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-inner">
+        <h1>Welcome to City Library</h1>
+        <p>Discover, borrow, and return books from our collection. Register for a free membership to get started.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ BOOKS_URL }}/books/">Browse Books</a>
+            {% if not user.is_authenticated %}
+                <a class="btn btn-secondary" href="{{ USERS_URL }}/accounts/register/">Register Free</a>
+            {% else %}
+                <a class="btn btn-secondary" href="{% url 'rentals:my_borrows' %}">My Borrows</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-num">{{ total_books }}</span>
+        <span class="stat-label">Books in Collection</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-num">{{ available_books }}</span>
+        <span class="stat-label">Available Now</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-num">{{ active_borrows }}</span>
+        <span class="stat-label">Currently On Loan</span>
+    </div>
+    <div class="stat-card {% if overdue_borrows %}stat-card--alert{% endif %}">
+        <span class="stat-num">{{ overdue_borrows }}</span>
+        <span class="stat-label">Overdue</span>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <h2>Borrowing Rules</h2>
+    </div>
+    <div class="rules-grid">
+        <div class="rule-card">
+            <div class="rule-icon">5</div>
+            <h3>Book Limit</h3>
+            <p>You may borrow up to 5 books at a time across your account.</p>
+        </div>
+        <div class="rule-card">
+            <div class="rule-icon">14</div>
+            <h3>Loan Period</h3>
+            <p>Each book must be returned within 14 days of the borrow date.</p>
+        </div>
+        <div class="rule-card">
+            <div class="rule-icon">+7</div>
+            <h3>One Extension</h3>
+            <p>You may request a single 7-day extension per book before or after the due date.</p>
+        </div>
+        <div class="rule-card rule-card--warn">
+            <div class="rule-icon">!</div>
+            <h3>Overdue Suspension</h3>
+            <p>Overdue books suspend your account. Return the book or request an extension to restore access.</p>
+        </div>
+    </div>
+</section>
+
+{% if recent_borrows and user.is_staff %}
+<section class="section">
+    <div class="section-header">
+        <h2>Recent Activity <small class="muted">(staff only)</small></h2>
+        <a href="{{ BOOKS_URL }}/books/" class="btn btn-secondary btn-sm">All Books</a>
+    </div>
+    <div class="table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Borrower</th>
+                    <th>Borrowed</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in recent_borrows %}
+                <tr>
+                    <td><strong>{{ r.book_cache.title }}</strong><br><small>{{ r.book_cache.author }}</small></td>
+                    <td>{{ r.user_cache.username }}</td>
+                    <td>{{ r.borrow_date }}</td>
+                    <td>{{ r.effective_due_date }}</td>
+                    <td><span class="badge badge--{{ r.status }}">{{ r.get_status_display }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

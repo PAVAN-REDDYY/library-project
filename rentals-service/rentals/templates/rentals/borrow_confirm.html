@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Borrow | City Library{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Confirm Borrow</h1>
+</div>
+
+<section class="section">
+    <div class="detail-row">
+        <span>Title</span>
+        <strong>{{ book.title }}</strong>
+    </div>
+    <div class="detail-row">
+        <span>Author</span>
+        <strong>{{ book.author }}</strong>
+    </div>
+    <div class="detail-row">
+        <span>Available Copies</span>
+        <strong>{{ book.available_copies }} / {{ book.total_copies }}</strong>
+    </div>
+
+    {% if can_borrow %}
+        <p>Borrowing this book gives you 14 days before it is due, with one 7-day extension available if you need more time.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Confirm Borrow</button>
+        </form>
+    {% else %}
+        <div class="alert alert-error">{{ error }}</div>
+        <a href="{{ BOOKS_URL }}/books/{{ book.book_id }}/" class="btn btn-secondary">Back to Book</a>
+    {% endif %}
+</section>
+{% endblock %}
