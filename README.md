@@ -12,7 +12,6 @@ across services that don't share a login system.
 
 It's a small domain on purpose — book rentals are simple enough that the
 architecture is the interesting part, not the business logic.
-
 ## What it does
 
 A member can register an account, browse the catalog, borrow a book, return
