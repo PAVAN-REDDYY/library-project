@@ -1,5 +1,5 @@
 pavan@fedora:~/projects/library-project/rentals-service$ cat Dockerfile
-FROM python:1.13-slim AS builder
+FROM python:3.13-slim AS builder
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
